@@ -138,8 +138,7 @@ public class Fragment_register extends Fragment implements View.OnClickListener 
 
                                     if (task.isSuccessful()) {
                                         Toast.makeText(getActivity(), "User has been registered successfully!", Toast.LENGTH_LONG).show();
-                                        progressBar.setVisibility(View.GONE
-                                        );
+                                        progressBar.setVisibility(View.GONE);
                                     }else{
                                         Toast.makeText(getActivity(), "Failed to register! Try again!", Toast.LENGTH_LONG).show();
                                         progressBar.setVisibility(View.GONE);
