@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -129,7 +130,7 @@ public class Fragment_register extends Fragment implements View.OnClickListener 
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             User user = new User(fullName, age, email, institute);
-
+                            Log.d("www","123");
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                     .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -139,15 +140,25 @@ public class Fragment_register extends Fragment implements View.OnClickListener 
                                     if (task.isSuccessful()) {
                                         Toast.makeText(getActivity(), "User has been registered successfully!", Toast.LENGTH_LONG).show();
                                         progressBar.setVisibility(View.GONE);
+                                        loadFragment(new Fragment_login(), "go login");
                                     }else{
                                         Toast.makeText(getActivity(), "Failed to register! Try again!", Toast.LENGTH_LONG).show();
                                         progressBar.setVisibility(View.GONE);
                                     }
                                 }
                             });
+                        }else{
+                            Toast.makeText(getActivity(), "Failed to register", Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
 
+    }
+    private void loadFragment(Fragment fragment, String Tag) {
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.body, fragment,Tag)
+                .addToBackStack(null)
+                .commit();
     }
 }

@@ -21,9 +21,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import org.w3c.dom.Text;
+
 
 public class Fragment_login extends Fragment implements View.OnClickListener {
-    private TextView registerLogin;
+    private TextView registerLogin, forgotPassword;
 
     private EditText editTextEmail, editTextPassword;
 
@@ -49,6 +51,8 @@ public class Fragment_login extends Fragment implements View.OnClickListener {
         View view  = inflater.inflate(R.layout.fragment_login, container, false);
 
         registerLogin  = (TextView) view.findViewById(R.id.login_register);
+        forgotPassword = (TextView) view.findViewById(R.id.login_forget_password);
+        forgotPassword.setOnClickListener(this);
 
         editTextEmail = (EditText) view.findViewById(R.id.login_email);
         editTextPassword = (EditText) view.findViewById(R.id.login_password);
@@ -74,6 +78,9 @@ public class Fragment_login extends Fragment implements View.OnClickListener {
                 break;
             case R.id.login_signIn:
                 userLogin();
+                break;
+            case R.id.login_forget_password:
+                loadFragment(new Fragment_forgotPassword(), "Finish Fragment_login, start Fragment_forgotPassword");
                 break;
         }
     }
@@ -114,7 +121,7 @@ public class Fragment_login extends Fragment implements View.OnClickListener {
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                     if(user.isEmailVerified()){
-                        loadFragment(new Fragment_main(), "Finish Fragment_login, start Fragment_main");
+                        loadFragment(new Fragment_profile(), "Finish Fragment_login, start Fragment_main");
                     }else{
                         user.sendEmailVerification();
                         Toast.makeText(getActivity(), "Check your email to verify you account",

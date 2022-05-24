@@ -56,7 +56,7 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_Email" />
 
     <TextView
-        android:id="@+id/prifile_youProfile"
+        android:id="@+id/profile_greeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
@@ -76,7 +76,7 @@
         android:textSize="23dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prifile_youProfile" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_greeting" />
 
     <TextView
         android:id="@+id/profile_age"
