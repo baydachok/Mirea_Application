@@ -58,7 +58,7 @@ public class Fragment_profile extends Fragment {
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadFragment(new Fragment_menu1(), "menu");
+                loadFragment(new Fragment_menu(), "menu");
             }
         });
 

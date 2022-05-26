@@ -1,5 +1,7 @@
 package com.example.mirea_application;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,14 +19,23 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import org.w3c.dom.Text;
 
+import java.nio.charset.StandardCharsets;
+
 
 public class Fragment_login extends Fragment implements View.OnClickListener {
+    private final String save_email = "save_email";
+    private final String save_password = "save_password";
+
+    private SharedPreferences prefEmail;
+    private SharedPreferences prefPass;
+
     private TextView registerLogin, forgotPassword;
 
     private EditText editTextEmail, editTextPassword;
@@ -50,21 +61,26 @@ public class Fragment_login extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View view  = inflater.inflate(R.layout.fragment_login, container, false);
 
-        registerLogin  = (TextView) view.findViewById(R.id.login_register);
+        prefEmail = getActivity().getSharedPreferences("test", Context.MODE_PRIVATE);
+
         forgotPassword = (TextView) view.findViewById(R.id.login_forget_password);
         forgotPassword.setOnClickListener(this);
 
         editTextEmail = (EditText) view.findViewById(R.id.login_email);
-        editTextPassword = (EditText) view.findViewById(R.id.login_password);
+        editTextPassword = view.findViewById(R.id.login_password);
 
         signIn = (Button) view.findViewById(R.id.login_signIn);
         signIn.setOnClickListener(this);
 
         progressBar = (ProgressBar) view.findViewById(R.id.login_progressBar);
 
+        registerLogin = (TextView) view.findViewById(R.id.login_register) ;
         registerLogin.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
+
+        editTextEmail.setText(prefEmail.getString(save_email,""));
+
 
         return view;
     }
@@ -111,6 +127,10 @@ public class Fragment_login extends Fragment implements View.OnClickListener {
             return;
         }
 
+        SharedPreferences.Editor emailknow = prefEmail.edit();
+        emailknow.putString(save_email, email);
+        emailknow.apply();
+
         progressBar.setVisibility(View.VISIBLE);
 
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -145,5 +165,6 @@ public class Fragment_login extends Fragment implements View.OnClickListener {
                 .addToBackStack(null)
                 .commit();
     }
+
 }
 

@@ -24,11 +24,13 @@
             android:layout_height="wrap_content"
             android:hint="@string/edit_text_hint"
             android:minHeight="48dp" />
+
         <Button
+            android:id="@+id/send_message_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/send_message_button"
-            android:text="@string/send_button_name"/>
+            android:background="#5E35B1"
+            android:text="@string/send_button_name" />
     </LinearLayout>
 
 

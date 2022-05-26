@@ -11,13 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class DataAdapter extends RecyclerView.Adapter<ViewHolder> {
+public class MyAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     ArrayList<String> messages;
 
     LayoutInflater inflater;
 
-    public DataAdapter(Context context, ArrayList<String> messages) {
+    public MyAdapter(Context context, ArrayList<String> messages) {
         this.messages = messages;
         this.inflater = LayoutInflater.from(context);
     }
@@ -28,7 +28,7 @@ public class DataAdapter extends RecyclerView.Adapter<ViewHolder> {
 
         View view = inflater.inflate(R.layout.item_message,parent,false);
 
-        return null;
+        return new ViewHolder(view);
     }
 
     @Override

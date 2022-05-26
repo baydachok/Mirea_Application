@@ -24,22 +24,32 @@
 
     <!-- android:drawableLeft="@drawable/icon_castle_in_register" -->
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/login_password"
         android:layout_width="313dp"
         android:layout_height="48dp"
         android:layout_marginTop="32dp"
         android:background="#CCC2C2"
-
-
+        app:passwordToggleEnabled="true"
         android:elegantTextHeight="false"
-        android:ems="10"
+
         android:hint="Password"
         android:inputType="textPassword"
         android:paddingLeft="10dp"
         app:layout_constraintEnd_toEndOf="@+id/login_email"
         app:layout_constraintStart_toStartOf="@+id/login_email"
-        app:layout_constraintTop_toBottomOf="@+id/login_email" />
+        app:layout_constraintTop_toBottomOf="@+id/login_email"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ems="10"
+
+            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
 
     <TextView
         android:id="@+id/login_cap"
@@ -75,7 +85,7 @@
         android:layout_width="315dp"
         android:layout_height="48dp"
         android:layout_marginTop="32dp"
-        android:text="Button"
+        android:text="Войти"
         app:layout_constraintEnd_toEndOf="@+id/login_password"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/login_password"
@@ -86,7 +96,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="Forget Password"
+        android:text="Забыл пароль"
         android:textColor="#FFFFFF"
         android:textSize="18dp"
         app:layout_constraintStart_toStartOf="@+id/login_signIn"
@@ -97,11 +107,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="Register"
-        android:textColor="#FFFFFF"
-        android:textSize="18dp"
         android:clickable="true"
+        android:minHeight="48dp"
+        android:text="Регистрация"
+        android:textColor="#FFFFFF"
 
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="@+id/login_signIn"
         app:layout_constraintTop_toBottomOf="@+id/login_signIn" />
 
@@ -116,6 +127,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 
 
