@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,7 +40,8 @@ public class Fragment_login extends Fragment implements View.OnClickListener {
 
     private TextView registerLogin, forgotPassword;
 
-    private EditText editTextEmail, editTextPassword;
+    private EditText editTextEmail;
+    private TextInputLayout editTextPassword;
 
     private Button signIn;
 
@@ -104,7 +107,8 @@ public class Fragment_login extends Fragment implements View.OnClickListener {
 
     private void userLogin() {
         String email = editTextEmail.getText().toString().trim();
-        String password = editTextPassword.getText().toString().trim();
+        String password = editTextPassword.getEditText().getText().toString().trim();
+        Log.d("www",password);
 
         if (email.isEmpty()){
             editTextEmail.setError("Email is required!");

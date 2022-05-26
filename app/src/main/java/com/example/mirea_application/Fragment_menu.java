@@ -1,9 +1,11 @@
 package com.example.mirea_application;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +15,7 @@ import android.widget.Button;
 public class Fragment_menu extends Fragment {
 
     private Button menu;
-
+    private Button time;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,17 @@ public class Fragment_menu extends Fragment {
                 loadFragment(new Fragment_anonymousChat(), "anonymousChat");
             }
         });
+        time = (Button) view.findViewById(R.id.menu_cleverWatch);
+        time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(),MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
 
         return view;
     }
